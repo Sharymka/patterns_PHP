@@ -34,6 +34,6 @@ function quickSort($arr, $low, $high) {
         // Рекурсивно вызываем сортировку для правой части
         quickSort($arr, $i, $high);
     }
-}
 
-return $iterationsCount;
+    return $iterationsCount;
+}

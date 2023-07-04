@@ -1,6 +1,7 @@
 <?php
 
-function heapify($arr, $countArr, $i)
+$iterationsCount = 0;
+function heapify(&$arr, $countArr, $i)
 {
     $largest = $i; // Инициализируем наибольший элемент как корень
     $left = 2*$i + 1; // левый = 2*i + 1
@@ -25,13 +26,19 @@ function heapify($arr, $countArr, $i)
 //Основная функция, выполняющая пирамидальную сортировку
 function heapSort(&$arr)
 {
+    global $iterationsCount;
     $countArr = count($arr);
 // Построение кучи (перегруппируем массив)
-    for ($i = $countArr / 2 - 1; $i >= 0; $i--)
+    for ($i = $countArr / 2 - 1; $i >= 0; $i--) {
+        $iterationsCount ++;
         heapify($arr, $countArr, $i);
+
+    }
+
 //Один за другим извлекаем элементы из кучи
     for ($i = $countArr-1; $i >= 0; $i--)
     {
+        $iterationsCount ++;
 // Перемещаем текущий корень в конец
         $temp = $arr[0];
         $arr[0] = $arr[$i];
@@ -39,4 +46,6 @@ function heapSort(&$arr)
 // вызываем процедуру heapify на уменьшенной куче
         heapify($arr, $i, 0);
     }
+    return  $iterationsCount;
 }
+
